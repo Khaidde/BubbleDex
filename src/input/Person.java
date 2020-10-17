@@ -1,7 +1,5 @@
 package input;
 
-import org.apache.poi.ss.formula.functions.T;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -33,6 +31,10 @@ public class Person {
 
     public boolean isToggleOn() {
         return toggleOn;
+    }
+    
+    public void addTraits(Trait trait) {
+        this.traits.add(trait);
     }
 
     public ArrayList<Trait> getTraits() {
