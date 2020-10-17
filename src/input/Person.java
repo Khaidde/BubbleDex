@@ -33,7 +33,7 @@ public class Person {
         return toggleOn;
     }
     
-    public void addTraits(Trait trait) {
+    public void addTrait(Trait trait) {
         this.traits.add(trait);
     }
 
