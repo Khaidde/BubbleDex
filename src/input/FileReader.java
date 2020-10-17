@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class FileReader { //pretty sure this will be an all static methods class
-    public static ArrayList<Person> read(String fileLoc, Set<Trait> allTraits) throws IOException {
+    public static ArrayList<Person> read(String fileLoc, Set<Group> allTraits) throws IOException {
         ArrayList<Person> peeps = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(new File(fileLoc));
 
@@ -35,9 +35,10 @@ public class FileReader { //pretty sure this will be an all static methods class
                 if (name.equals("")) {
                     name = cell.getStringCellValue();
                 } else {
-                    Trait hold = new Trait(cell.getStringCellValue());
+                    Group g = new Group(cell.getStringCellValue());
+                    Trait hold = new Trait(g, null);
                     traits.add(hold);
-                    allTraits.add(hold);
+                    allTraits.add(g);
                 }
             }
             Person p = new Person(name, traits);

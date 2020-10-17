@@ -1,30 +1,26 @@
 package input;
 
+import org.apache.poi.ss.formula.functions.T;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Person {
     private String name;
     private boolean toggleOn;
-    private ArrayList<Trait> traits;        //the indexes of the traits should match the exact time they were there.
-    private ArrayList<Date> time;
+    private ArrayList<Trait> traits;
 
-    public Person(String name, boolean toggleOn, ArrayList<Trait> traits, ArrayList<Date> time) {
+    public Person(String name, boolean toggleOn, ArrayList<Trait> traits) {
         this.name = name;
         this.toggleOn = toggleOn;
         this.traits = new ArrayList<>();
-        this.time = new ArrayList<>();
 
-        if(traits.size() != time.size())
-            System.out.println("Warning: traits and time don't match!");
         for (int i = 0; i < traits.size(); i++)
             this.traits.add(traits.get(i));
-        for (int i = 0; i < time.size(); i++)
-            this.time.add(time.get(i));
     }
 
     public Person(String name, ArrayList<Trait> traits) {
-        this(name, false, traits, new ArrayList<>());
+        this(name, false, traits);
     }
 
     public String getName() {
@@ -39,10 +35,6 @@ public class Person {
         return traits;
     }
 
-    public ArrayList<Date> getTime() {
-        return time;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,13 +42,12 @@ public class Person {
         Person person = (Person) o;
         return toggleOn == person.toggleOn &&
                 Objects.equals(name, person.name) &&
-                Objects.equals(traits, person.traits) &&
-                Objects.equals(time, person.time);
+                Objects.equals(traits, person.traits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, toggleOn, traits, time);
+        return Objects.hash(name, toggleOn, traits);
     }
 
     @Override
@@ -65,7 +56,6 @@ public class Person {
                 "name='" + name + '\'' +
                 ", toggleOn=" + toggleOn +
                 ", traits=" + traits +
-                ", time=" + time +
                 '}';
     }
 }

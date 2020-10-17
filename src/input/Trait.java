@@ -1,52 +1,31 @@
 package input;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 public class Trait {
-    String event;
-    private ArrayList<Person> people;
+    private Group group;
+    private Date date;
 
-    public Trait(String event, ArrayList<Person> people) {
-        this.event = event;
-        for (int i = 0; i < people.size(); i++)
-            this.people.add(people.get(i));
+    public Trait(Group group, Date date) {
+        if (group != null) {
+            this.group = new Group(group);
+        }
+        if (date != null) {
+            this.date = date;
+        }
     }
 
-    public Trait(String event) {
-        this(event, new ArrayList<>());
+    public Group getGroup() {
+        return group;
     }
 
-    public ArrayList<Person> getPeople() {
-        return people;
-    }
-
-    public void addPerson(Person p) {
-        people.add(p);
-    }
-
-    public int numberOfPeople() {
-        return people.size();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Trait trait = (Trait) o;
-        return Objects.equals(event, trait.event);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(event);
+    public Date getDate() {
+        return date;
     }
 
     @Override
     public String toString() {
         return "Trait{" +
-                "event='" + event + '\'' +
-                ", people=" + people +
+                "group=" + group +
+                ", date=" + date +
                 '}';
     }
 }
