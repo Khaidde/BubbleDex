@@ -42,8 +42,7 @@ public class FileReader { //pretty sure this will be an all static methods class
             }
             System.out.println();
         }
-
-        workbook.close();
+        
         inputStream.close();
     }
 }

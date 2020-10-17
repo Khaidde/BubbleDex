@@ -1,0 +1,22 @@
+.jfx-button {
+     -jfx-button-type: RAISED;
+     -fx-background-color: magenta;
+     -fx-text-fill: black;
+}
+
+.jfx-text-field {
+	-fx-text-fill: white;
+	-fx-font-size: 18;
+}
+
+.jfx-slider > .animated-thumb {
+     -fx-background-color: #89649c;
+}
+
+.jfx-slider > .colored-track {
+	-fx-background-color: #ad7ec4;
+}
+
+.jfx-slider > .thumb {
+	-fx-background-color: #ad7ec4;
+}
