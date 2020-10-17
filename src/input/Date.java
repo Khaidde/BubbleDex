@@ -1,6 +1,4 @@
 package input;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -10,8 +8,14 @@ public class Date {
   int initYear;
   int finMonth;
   int finYear;
-  //private ArrayList<Person> people;
 
+  /**
+   * Constructor for past events
+   * @param initMonth start month
+   * @param initYear start year
+   * @param finMonth end month
+   * @param finYear end year
+   */
   public Date(int initMonth, int initYear, int finMonth, int finYear) {
     this.initMonth = initMonth;
     this.initYear = initYear;
@@ -19,7 +23,11 @@ public class Date {
     this.finYear = finYear;
   }
 
-  //for ongoing events
+  /**
+   * Constructor for on-going events
+   * @param initMonth start month
+   * @param initYear start year
+   */
   public Date(int initMonth, int initYear) {
     //Getting the current date value
     LocalDate currentdate = LocalDate.now();
@@ -40,7 +48,12 @@ public class Date {
 //  public int numberOfPeople() {
 //    return people.size();
 //  }
-  
+
+  /**
+   * Checks to see if given date is within this.
+   * @param date date you want to check
+   * @return true if the date is within this, false otherwise
+   */
   public boolean includes(Date date) {
     if (date.initYear < this.initYear || ((date.initYear == this.initYear) && (date.initMonth < this.initMonth))) {
       return false;
