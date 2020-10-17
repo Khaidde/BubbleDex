@@ -1,9 +1,9 @@
 package main;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 
+import graphics.GraphManager;
 import graphics.ResizableCanvas;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -21,6 +21,8 @@ public class Window extends Application {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 	
+	private GraphManager graphManager = new GraphManager();
+	
 	public void begin(String[] args) {
 		launch(args);
 	}
@@ -37,34 +39,20 @@ public class Window extends Application {
     	primaryStage.setTitle(TITLE);
     	primaryStage.show();
     	
-    	/*
-	    GridPane grid = new GridPane();
-	    grid.setPadding(new Insets(10));
-	    grid.setVgap(10);
-	    grid.setHgap(10);
-	    */
     	BorderPane borderPane = new BorderPane();
     	borderPane.setPadding(new Insets(10));
     	borderPane.setOnMouseClicked(event -> borderPane.requestFocus());
 
-	    JFXTextField txtField = new JFXTextField();
-	    txtField.setMaxWidth(200);
-	    //GridPane.setConstraints(txtField, 0, 0);
-	    borderPane.setTop(txtField);
-    	//grid.getChildren().add(txtField);
-    	
-    	JFXButton btn = new JFXButton();
-    	btn.setText("Hello World");
-    	btn.setOnAction(event -> System.out.println("Hello World!"));
-//    	GridPane.setConstraints(btn, 1, 0);
-//    	grid.getChildren().add(btn);
-    	//borderPane.setBottom(btn);
+	    JFXTextField searchInput = new JFXTextField();
+	    searchInput.setMaxWidth(200);
+	    searchInput.setPromptText("Search");
+	    borderPane.setTop(searchInput);
     	
     	JFXSlider slider = new JFXSlider();
     	GridPane.setConstraints(slider, 0, 3);
     	borderPane.setBottom(slider);
     	
-    	ResizableCanvas canvas = new ResizableCanvas();
+    	ResizableCanvas canvas = new ResizableCanvas(graphManager);
     	canvas.widthProperty().bind(content.widthProperty());
     	canvas.heightProperty().bind(content.heightProperty());
         
@@ -72,16 +60,14 @@ public class Window extends Application {
     	content.getChildren().add(borderPane);
 	      
 	    AnimationTimer timer = new AnimationTimer() {
-	    	float c = 0;
 			public void handle(long now) {
 				canvas.render();
-
-				c += 0.1;
-				btn.setTranslateX(10 * Math.cos(c));
-				btn.setTranslateY(10 * Math.sin(c));
 			}
     	};
         timer.start();
+        
+        
+        //TODO read files and everything
     }
     
     public static void main(String[] args) {
