@@ -79,6 +79,6 @@ public class Date {
   public String toString() {
     return "Date{" +
             "starting from " + initYear + "/" + initMonth +
-            "to " + finYear + "/" + finMonth + "}";
+            " to " + finYear + "/" + finMonth + "}";
   }
 }

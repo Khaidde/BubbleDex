@@ -62,9 +62,8 @@ public class FileReader { //pretty sure this will be an all static methods class
                         help.get(help.indexOf(g)).getPeople().add(p);
                     }
 
-                    Cell bob = cellIterator.next();
-                    s = bob.getStringCellValue();
-                    System.out.println(bob);
+                    cell = cellIterator.next();
+                    s = cell.getStringCellValue();
 
                     Date d;
                     int initMonth = Integer.parseInt(s.substring(0, s.indexOf("/")));
@@ -80,7 +79,7 @@ public class FileReader { //pretty sure this will be an all static methods class
 
                         d = new Date(initMonth, initYear, finMonth, finYear);
                     }
-                    p.getTraits().add(new Trait(g, null));
+                    p.getTraits().add(new Trait(g, d));
                 } else {
                     System.out.println("Input was not recognized: " + s);
                 }
