@@ -14,7 +14,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Class that handles files.
+ *
+ * @author allison
+ */
 public class FileReader { //pretty sure this will be an all static methods class
+
+    /**
+     * Takes in a file and reads it to create the Persons from the file and Groups.
+     * @param fileLoc where the excel file is located
+     * @param allGroups a Set of all the Groups known in the current program (enter and empty one if none are known),
+     *                 will add the new Groups it finds to it
+     * @return an ArrayList of all the Persons in the file
+     * @throws IOException Cannot find file. :C
+     */
     public static ArrayList<Person> read(String fileLoc, Set<Group> allGroups) throws IOException {
         ArrayList<Person> peeps = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(new File(fileLoc));
@@ -28,7 +42,7 @@ public class FileReader { //pretty sure this will be an all static methods class
             Iterator<Cell> cellIterator = nextRow.cellIterator();
 
             String name = "";
-            ArrayList<Trait> traits = new ArrayList<>();
+            ArrayList<Trait> traits = new ArrayList<>();        //Personal traits
             //TODO: Add time into this
 
             Person p = new Person("Non");
