@@ -39,6 +39,17 @@ public class Person {
         return traits;
     }
 
+    public Group getGroup(Date time) {
+        for (int i = 0; i < traits.size(); i++) {
+            Trait t = traits.get(i);
+            if(t.getDate().includes(time)) {
+                return t.getGroup();
+            }
+        }
+        System.out.println("Could not find a Group for that specific date");
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
