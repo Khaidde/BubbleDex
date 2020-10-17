@@ -12,13 +12,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Window extends Application {
-	private static final String TITLE = "HackGT7";
+	private static final String TITLE = "BubbleDex";
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 	
 	public void begin(String[] args) {
 		launch(args);
-		System.out.println("AasdDSDAS");
 	}
     
     public void start(Stage primaryStage) {
@@ -66,7 +65,7 @@ public class Window extends Application {
         		}
         	}
         });
-	    thread.start();
+	    //thread.start();
     }
     
     boolean running = false;
