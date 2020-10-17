@@ -23,7 +23,10 @@ public class Date {
   public Date(int initMonth, int initYear) {
     //Getting the current date value
     LocalDate currentdate = LocalDate.now();
-    this(initMonth, initYear, currentdate.getMonthValue(), currentdate.getYear());
+    this.initMonth = initMonth;
+    this.initYear = initYear;
+    this.finMonth = currentdate.getMonthValue();
+    this.finYear = currentdate.getYear();
   }
 
 //  public ArrayList<Person> getPeople() {
