@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Window extends Application {
-	private static final String TITLE = "HackGT7";
+	private static final String TITLE = "BubbleDex";
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 	
