@@ -1,10 +1,15 @@
 package main;
 
+import java.util.ArrayList;
+
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 
 import graphics.GraphManager;
 import graphics.ResizableCanvas;
+import input.Group;
+import input.Person;
+import input.Trait;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -25,6 +30,14 @@ public class Window extends Application {
 	
 	public void begin(String[] args) {
 		launch(args);
+		
+		Group group = new Group("test", new ArrayList<>());
+		
+		Person p = new Person("Joe Smoe");
+		p.addTrait(new Trait(group, null));
+		for (int i = 0; i < 100; i++) {
+			graphManager.createNode(new Person("Joe Smoe"));
+		}
 	}
     
     public void start(Stage primaryStage) {

@@ -2,15 +2,22 @@ package graphics;
 
 import javafx.scene.canvas.GraphicsContext;
 import utils.collections.Bag;
+import utils.collections.IntBag;
 
 public final class NodeGrouping {
 	
-	private final Bag<Node> nodes = new Bag<>();
+	private final IntBag nodeIDs = new IntBag();
+	
+	private final GraphManager graphManager;
 	
 	private int radius;
 	
-	public void addNode(Node node) {
-		nodes.add(node);
+	public NodeGrouping(GraphManager graphManager) {
+		this.graphManager = graphManager;
+	}
+	
+	public void insertNode(Node node) {
+		nodeIDs.add(node.id);
 		
 		//TODO Compute positions and stuff
 	}
@@ -18,8 +25,8 @@ public final class NodeGrouping {
 	public void render(GraphicsContext gc) {
 		//TODO render big circle grouping;
 		
-		nodes.iterate(node -> {
-			node.render(gc);
+		nodeIDs.iterate(nodeID -> {
+			graphManager.getNode(nodeID).render(gc);
 		});
 	}
 	
