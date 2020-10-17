@@ -11,10 +11,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class FileReader { //pretty sure this will be an all static methods class
-    public static ArrayList<Person> read(String fileLoc, Set<Group> allTraits) throws IOException {
+    public static ArrayList<Person> read(String fileLoc, Set<Group> allGroups) throws IOException {
         ArrayList<Person> peeps = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(new File(fileLoc));
 
@@ -29,19 +30,25 @@ public class FileReader { //pretty sure this will be an all static methods class
             String name = "";
             ArrayList<Trait> traits = new ArrayList<>();
             //TODO: Add time into this
-            int i = 0;
+
+            Person p = new Person("Non");
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();
                 if (name.equals("")) {
                     name = cell.getStringCellValue();
+                    p = new Person(name);
                 } else {
                     Group g = new Group(cell.getStringCellValue());
+                    if (allGroups.add(g)) {
+                        g.getPeople().add(p);
+                    } else {
+                        ArrayList<Group> help = new ArrayList<Group>(allGroups);
+                        help.get(help.indexOf(g)).getPeople().add(p);
+                    }
                     Trait hold = new Trait(g, null);
                     traits.add(hold);
-                    allTraits.add(g);
                 }
             }
-            Person p = new Person(name, traits);
             peeps.add(p);
         }
         

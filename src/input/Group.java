@@ -7,14 +7,17 @@ public class Group {
     String event;
     private ArrayList<Person> people;
 
-    public Group(Group other) {
-        this(other.event, other.people);
-    }
-
     public Group(String event, ArrayList<Person> people) {
         this.event = event;
-        for (int i = 0; i < people.size(); i++)
-            this.people.add(people.get(i));
+        this.people = new ArrayList<>();
+        if(people != null) {
+            for (int i = 0; i < people.size(); i++)
+                this.people.add(people.get(i));
+        }
+    }
+
+    public Group(Group other) {
+        this(other.event, other.people);
     }
 
     public Group(String event) {

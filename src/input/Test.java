@@ -8,10 +8,10 @@ import java.util.Set;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        Set<Group> allTraits = new LinkedHashSet<>();
-        ArrayList<Person> peeps = FileReader.read("Test.xlsx", allTraits);
+        Set<Group> allGroups = new LinkedHashSet<>();
+        ArrayList<Person> peeps = FileReader.read("Test.xlsx", allGroups);
 
-        for (Group g : allTraits) {
+        for (Group g : allGroups) {
             System.out.println(g);
         }
     }

@@ -23,6 +23,10 @@ public class Person {
         this(name, false, traits);
     }
 
+    public Person(String name) {
+        this(name, false, new ArrayList<>());
+    }
+
     public String getName() {
         return name;
     }

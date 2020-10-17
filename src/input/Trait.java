@@ -5,10 +5,10 @@ public class Trait {
     private Date date;
 
     public Trait(Group group, Date date) {
-        if (group != null) {
+        if(group != null) {
             this.group = new Group(group);
         }
-        if (date != null) {
+        if(date != null) {
             this.date = date;
         }
     }
