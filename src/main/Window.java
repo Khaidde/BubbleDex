@@ -18,7 +18,6 @@ public class Window extends Application {
 	
 	public void begin(String[] args) {
 		launch(args);
-		System.out.println("AasdDSDAS");
 	}
     
     public void start(Stage primaryStage) {
@@ -66,7 +65,7 @@ public class Window extends Application {
         		}
         	}
         });
-	    thread.start();
+	    //thread.start();
     }
     
     boolean running = false;
