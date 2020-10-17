@@ -45,7 +45,6 @@ public class FileReader { //pretty sure this will be an all static methods class
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();
                 String s = cell.getStringCellValue();
-                System.out.println(s);
 
                 if (s.equals("Name")) {                                 //should reset the hold variables
                     peeps.add(p);
@@ -65,20 +64,7 @@ public class FileReader { //pretty sure this will be an all static methods class
                     cell = cellIterator.next();
                     s = cell.getStringCellValue();
 
-                    Date d;
-                    int initMonth = Integer.parseInt(s.substring(0, s.indexOf("/")));
-                    s = s.substring(s.indexOf("/") + 1);
-                    int initYear = Integer.parseInt(s.substring(0, s.indexOf(",")));
-                    if(s.indexOf(",") + 1 > s.length() - 1) {
-                        d = new Date(initMonth, initYear);
-                    } else {
-                        s = s.substring(s.indexOf(",") + 1);
-                        int finMonth = Integer.parseInt(s.substring(0, s.indexOf("/")));
-                        s = s.substring(s.indexOf("/") + 1);
-                        int finYear = Integer.parseInt(s);
-
-                        d = new Date(initMonth, initYear, finMonth, finYear);
-                    }
+                    Date d = readDate(s);
                     p.getTraits().add(new Trait(g, d));
                 } else {
                     System.out.println("Input was not recognized: " + s);
@@ -93,5 +79,22 @@ public class FileReader { //pretty sure this will be an all static methods class
         inputStream.close();
         peeps.remove(0);
         return peeps;
+    }
+
+    private static Date readDate(String s) {
+        Date d;
+        int initMonth = Integer.parseInt(s.substring(0, s.indexOf("/")));
+        s = s.substring(s.indexOf("/") + 1);
+        int initYear = Integer.parseInt(s.substring(0, s.indexOf(",")));
+        if(s.indexOf(",") + 1 > s.length() - 1) {
+            return new Date(initMonth, initYear);
+        } else {
+            s = s.substring(s.indexOf(",") + 1);
+            int finMonth = Integer.parseInt(s.substring(0, s.indexOf("/")));
+            s = s.substring(s.indexOf("/") + 1);
+            int finYear = Integer.parseInt(s);
+
+            return new Date(initMonth, initYear, finMonth, finYear);
+        }
     }
 }
