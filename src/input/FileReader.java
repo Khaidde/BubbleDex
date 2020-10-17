@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class FileReader { //pretty sure this will be an all static methods class
-    public void read(String fileLoc) throws IOException {
+    public static void read(String fileLoc) throws IOException {
         FileInputStream inputStream = new FileInputStream(new File(fileLoc));
 
         Workbook workbook = new XSSFWorkbook(inputStream);
