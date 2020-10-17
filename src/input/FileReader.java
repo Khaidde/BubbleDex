@@ -43,8 +43,7 @@ public class FileReader { //pretty sure this will be an all static methods class
             Person p = new Person(name, traits);
             peeps.add(p);
         }
-
-        workbook.close();
+        
         inputStream.close();
         return peeps;
     }
