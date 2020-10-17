@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class FileReader { //pretty sure this will be an all static methods class
-    public void read(String fileLoc) throws IOException {
+    public static ArrayList<Person> read(String fileLoc) throws IOException {
+        ArrayList<Person> peeps = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(new File(fileLoc));
 
         Workbook workbook = new XSSFWorkbook(inputStream);
@@ -31,18 +32,17 @@ public class FileReader { //pretty sure this will be an all static methods class
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();
                 if (name.equals("")) {
-                    System.out.print(cell.getStringCellValue());
                     name = cell.getStringCellValue();
                 } else {
-                    System.out.print(cell.getStringCellValue());
                     Trait hold = new Trait(cell.getStringCellValue()); //TODO: don't make repeat traits, switch to Hashset?
                     traits.add(hold);
                 }
-                System.out.print(" - ");
             }
-            System.out.println();
+            Person p = new Person(name, traits);
+            peeps.add(p);
         }
         
         inputStream.close();
+        return peeps;
     }
 }

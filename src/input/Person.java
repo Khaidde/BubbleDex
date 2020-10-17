@@ -23,6 +23,10 @@ public class Person {
             this.time.add(time.get(i));
     }
 
+    public Person(String name, ArrayList<Trait> traits) {
+        this(name, false, traits, new ArrayList<>());
+    }
+
     public String getName() {
         return name;
     }
