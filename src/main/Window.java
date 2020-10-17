@@ -18,6 +18,7 @@ public class Window extends Application {
 	
 	public void begin(String[] args) {
 		launch(args);
+		System.out.println("ASDSDSDAS");
 	}
     
     public void start(Stage primaryStage) {
