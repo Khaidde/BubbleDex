@@ -11,7 +11,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -37,36 +36,63 @@ public class FileReader { //pretty sure this will be an all static methods class
         Sheet firstSheet = workbook.getSheetAt(0);
         Iterator<Row> iterator = firstSheet.iterator();
 
+        String name = "";
+        Person p = new Person("N/A");
         while (iterator.hasNext()) {
-            Row nextRow = iterator.next(); //Each row will be a person
+            Row nextRow = iterator.next();
             Iterator<Cell> cellIterator = nextRow.cellIterator();
 
-            String name = "";
-            ArrayList<Trait> traits = new ArrayList<>();        //Personal traits
-            //TODO: Add time into this
-
-            Person p = new Person("Non");
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();
-                if (name.equals("")) {
-                    name = cell.getStringCellValue();
+                String s = cell.getStringCellValue();
+                System.out.println(s);
+
+                if (s.equals("Name")) {                                 //should reset the hold variables
+                    peeps.add(p);
+                    name = "";
+                } else if (name.equals("")) {                           //when the cell is a name
+                    name = s;
                     p = new Person(name);
-                } else {
-                    Group g = new Group(cell.getStringCellValue());
+                } else if (s.matches(".*[A-z].*")){              //when the cell is a trait
+                    Group g = new Group(s);
                     if (allGroups.add(g)) {
                         g.getPeople().add(p);
                     } else {
                         ArrayList<Group> help = new ArrayList<Group>(allGroups);
                         help.get(help.indexOf(g)).getPeople().add(p);
                     }
-                    Trait hold = new Trait(g, null);
-                    traits.add(hold);
+
+                    Cell bob = cellIterator.next();
+                    s = bob.getStringCellValue();
+                    System.out.println(bob);
+
+                    Date d;
+                    int initMonth = Integer.parseInt(s.substring(0, s.indexOf("/")));
+                    s = s.substring(s.indexOf("/") + 1);
+                    int initYear = Integer.parseInt(s.substring(0, s.indexOf(",")));
+                    if(s.indexOf(",") + 1 > s.length() - 1) {
+                        d = new Date(initMonth, initYear);
+                    } else {
+                        s = s.substring(s.indexOf(",") + 1);
+                        int finMonth = Integer.parseInt(s.substring(0, s.indexOf("/")));
+                        s = s.substring(s.indexOf("/") + 1);
+                        int finYear = Integer.parseInt(s);
+
+                        d = new Date(initMonth, initYear, finMonth, finYear);
+                    }
+                    p.getTraits().add(new Trait(g, null));
+                } else {
+                    System.out.println("Input was not recognized: " + s);
                 }
             }
-            peeps.add(p);
+
+            if (!iterator.hasNext()) {
+               peeps.add(p);
+            }
         }
         
         inputStream.close();
+        peeps.remove(0);
         return peeps;
     }
 }

@@ -24,7 +24,7 @@ public class Trait {
     @Override
     public String toString() {
         return "Trait{" +
-                "group=" + group +
+                "group=" + group.getEvent() +
                 ", date=" + date +
                 '}';
     }

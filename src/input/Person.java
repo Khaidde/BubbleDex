@@ -41,6 +41,12 @@ public class Person {
         return traits;
     }
 
+    public void setTraits(ArrayList<Trait> traits) {
+        for (int i = 0; i < traits.size(); i++) {
+            this.traits.add(traits.get(i));
+        }
+    }
+
     public Group getGroup(Date time) {
         for (int i = 0; i < traits.size(); i++) {
             Trait t = traits.get(i);
