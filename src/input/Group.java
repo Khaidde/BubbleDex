@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Group {
-    String event;
+    private String event;
     private ArrayList<Person> people;
 
     public Group(String event, ArrayList<Person> people) {
@@ -22,6 +22,10 @@ public class Group {
 
     public Group(String event) {
         this(event, new ArrayList<>());
+    }
+    
+    public String getEvent() {
+    	return event;
     }
 
     public ArrayList<Person> getPeople() {
