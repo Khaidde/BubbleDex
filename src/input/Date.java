@@ -10,25 +10,23 @@ public class Date {
   int initYear;
   int finMonth;
   int finYear;
-  private ArrayList<Person> people;
+  //private ArrayList<Person> people;
 
-  public Date(int initMonth, int initYear, int finMonth, int finYear, ArrayList<Person> people) {
+  public Date(int initMonth, int initYear, int finMonth, int finYear) {
     this.initMonth = initMonth;
     this.initYear = initYear;
     this.finMonth = finMonth;
-    this.finYear = finYear
-    for (int i = 0; i < people.size(); i++)
-      this.people.add(people.get(i));
+    this.finYear = finYear;
   }
-  //Getting the current date value
-  LocalDate currentdate = LocalDate.now();
 
   //for ongoing events
-  public Date(int initMonth, int initYear, ArrayList<Person> people) {
-    this(initMonth, initYear, currentdate.getMonthValue(), currentdate.getYear(), people);
+  public Date(int initMonth, int initYear) {
+    //Getting the current date value
+    LocalDate currentdate = LocalDate.now();
+    this(initMonth, initYear, currentdate.getMonthValue(), currentdate.getYear());
   }
 
-  public ArrayList<Person> getPeople() {
+  /*public ArrayList<Person> getPeople() {
     return people;
   }
 
@@ -38,6 +36,16 @@ public class Date {
 
   public int numberOfPeople() {
     return people.size();
+  }*/
+  
+  public boolean includes(Date date) {
+    if (date.initYear < this.initYear || ((date.initYear == this.initYear) && (date.initMonth < this.initMonth))) {
+      return false;
+    } 
+    else if (date.finYear > this.finYear || ((date.finYear == this.finYear) && (date.finMonth > this.finMonth))) {
+      return false;
+    }
+    return true;
   }
 
   @Override
@@ -52,7 +60,6 @@ public class Date {
   public String toString() {
     return "Date{" +
             "starting from " + initYear + "/" + iniMonth +
-            "to " + finYear + "/" + finMonth
-    '}';
+            "to " + finYear + "/" + finMonth + "}";
   }
 }
