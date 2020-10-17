@@ -26,17 +26,17 @@ public class Date {
     this(initMonth, initYear, currentdate.getMonthValue(), currentdate.getYear());
   }
 
-  /*public ArrayList<Person> getPeople() {
-    return people;
-  }
-
-  public void addPerson(Person p) {
-    people.add(p);
-  }
-
-  public int numberOfPeople() {
-    return people.size();
-  }*/
+//  public ArrayList<Person> getPeople() {
+//    return people;
+//  }
+//
+//  public void addPerson(Person p) {
+//    people.add(p);
+//  }
+//
+//  public int numberOfPeople() {
+//    return people.size();
+//  }
   
   public boolean includes(Date date) {
     if (date.initYear < this.initYear || ((date.initYear == this.initYear) && (date.initMonth < this.initMonth))) {
@@ -53,13 +53,16 @@ public class Date {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Date date = (Date) o;
-    return date.initMonth = initMonth, date.initYear = initYear, date.finMonth = finMonth, date.finYear = finYear;
+    return date.initMonth == initMonth &&
+            date.initYear == initYear &&
+            date.finMonth == finMonth &&
+            date.finYear == finYear;
   }
 
   @Override
   public String toString() {
     return "Date{" +
-            "starting from " + initYear + "/" + iniMonth +
+            "starting from " + initYear + "/" + initMonth +
             "to " + finYear + "/" + finMonth + "}";
   }
 }
