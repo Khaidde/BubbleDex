@@ -9,6 +9,8 @@ public class ResizableCanvas extends Canvas {
 	
 	public ResizableCanvas(GraphManager graphManager) {
 		this.graphManager = graphManager;
+		widthProperty().addListener(evt -> this.graphManager.setWidth(this.getWidth()));
+		heightProperty().addListener(evt -> this.graphManager.setHeight(this.getHeight()));
     }
 
     public void render() {

@@ -1,12 +1,14 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 
 import graphics.GraphManager;
 import graphics.ResizableCanvas;
+import input.Date;
 import input.Group;
 import input.Person;
 import input.Trait;
@@ -26,18 +28,27 @@ public class Window extends Application {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 	
-	private GraphManager graphManager = new GraphManager();
+	private long lastNow;
+	
+	private GraphManager graphManager = new GraphManager(WIDTH, HEIGHT);
+	
+	public Window() {
+		Group[] groups = new Group[50];
+		for (int i = 0; i < groups.length; i++) {
+			groups[i] = new Group("test" + i, new ArrayList<>());
+		}
+		
+		Person p;
+		Random random = new Random();
+		for (int i = 0; i < 100; i++) {
+			p = new Person("Joe Smoe");
+			p.addTrait(new Trait(groups[random.nextInt(groups.length)], new Date(0, 0, 5, 5)));
+			graphManager.createNode(p);
+		}
+	}
 	
 	public void begin(String[] args) {
 		launch(args);
-		
-		Group group = new Group("test", new ArrayList<>());
-		
-		Person p = new Person("Joe Smoe");
-		p.addTrait(new Trait(group, null));
-		for (int i = 0; i < 100; i++) {
-			graphManager.createNode(new Person("Joe Smoe"));
-		}
 	}
     
     public void start(Stage primaryStage) {
@@ -72,8 +83,12 @@ public class Window extends Application {
     	content.getChildren().add(canvas);
     	content.getChildren().add(borderPane);
 	      
+    	lastNow = System.nanoTime();
 	    AnimationTimer timer = new AnimationTimer() {
 			public void handle(long now) {
+				graphManager.update(now - lastNow);
+				lastNow = now;
+				
 				canvas.render();
 			}
     	};
