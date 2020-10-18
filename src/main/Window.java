@@ -27,8 +27,8 @@ public class Window extends Application {
 	private static final String TITLE = "BubbleDex";
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
-	public ArrayList<Person> allPeople;
-	public Set<Group> allGroups;
+	public static ArrayList<Person> allPeople;
+	public static Set<Group> allGroups;
 	private GraphManager graphManager = new GraphManager(WIDTH, HEIGHT);
 	private long lastNow;
 

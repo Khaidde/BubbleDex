@@ -1,12 +1,16 @@
 package input;
-import java.util.ArrayList;
-import java.util.Objects;
+import main.Window;
 
-// Take in a string name and return a person
+import java.util.ArrayList;
+
 public class Find {
-  //not sure how the name is taken in
+  /**
+   * Finds the Person by name
+   * @param name name of Person searching for
+   * @return Person with the name
+   */
   public Person getPerson (String name) {
-    ArrayList<Person> search = Windows.allPeople; //I think my getPeople() call might be wrong(?)
+    ArrayList<Person> search = Window.allPeople; //I think my getPeople() call might be wrong(?)
     for (int i = 0; i < search.size(); i++) {
       if (((search.get(i)).getName()).equals(name)) {
         return search.get(i);
