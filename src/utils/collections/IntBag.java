@@ -83,4 +83,8 @@ public class IntBag {
 			execute.accept(data[i]);
 		}
 	}
+	
+	public int[] data() {
+		return this.data;
+	}
 }
