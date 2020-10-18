@@ -2,17 +2,16 @@ package main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Random;
+import java.util.Set;
 
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 
 import graphics.GraphManager;
 import graphics.ResizableCanvas;
-import input.Date;
-import input.Group;
-import input.Person;
-import input.Trait;
+import input.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -30,8 +29,8 @@ public class Window extends Application {
 	private static final int HEIGHT = 600;
 	public ArrayList<Person> allPeople;
 	public Set<Group> allGroups;
-	private GraphManager graphManager = new GraphManager();
 	private GraphManager graphManager = new GraphManager(WIDTH, HEIGHT);
+	private long lastNow;
 
 	public Window() {
 		Group[] groups = new Group[50];
