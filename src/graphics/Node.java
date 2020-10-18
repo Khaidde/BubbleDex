@@ -12,13 +12,13 @@ public class Node {
 	int id;
 	
 	private final Person person;
-	double x;
-	double y;
+	double x = 800 * Math.random();
+	double y= 800 * Math.random();
 	
 	public Node(Person person) {
 		this.person = person;
 	}
-
+	
 	public void render(GraphicsContext gc) {
 		gc.setFill(Color.WHITE);
 		gc.fillArc(x, y, SIZE, SIZE, 0, 360, ArcType.ROUND);

@@ -63,16 +63,14 @@ public class GraphManager {
 		nodes.clear();
 	}
 
-	private static final int MAX_CHANGE = 5;
 	public void update(long delta) {
-		
+		final int MAX_CHANGE = 5;
 		for (NodeGrouping nodeGrouping: groupings.values()) {
 			double distCenterX = (width / 2 - nodeGrouping.centerX);
 			double distCenterY = (height / 2 - nodeGrouping.centerY);
 			 
 			nodeGrouping.centerX += distCenterX * 0.01;
 			nodeGrouping.centerY += distCenterY * 0.01;
-			
 
 			for (NodeGrouping otherGrouping: groupings.values()) {
 				if (nodeGrouping.id == otherGrouping.id) continue;

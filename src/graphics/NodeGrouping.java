@@ -28,34 +28,35 @@ public final class NodeGrouping {
 	
 	public void insertNode(Node node) {
 		nodeIDs.add(node.id);
-		
-		//TODO Compute positions and stuff
 	}
 
 	public void update(long delta) {
 		int[] ids = nodeIDs.data();
 		for (int i = 0; i < nodeIDs.size(); i++) {
 			Node node = graphManager.getNode(ids[i]); 
-		
+			
 			double distCenterX = (centerX - node.x);
 			double distCenterY = (centerY - node.y);
 			
-			double fx = distCenterX * 0.01;
-			double fy = distCenterY * 0.01;
+			node.x += distCenterX * 0.05;
+			node.y += distCenterY * 0.05;
 			
-			int[] otherIDs = nodeIDs.data();
+			final int MAX_CHANGE = 1000;
 			for (int j = 0; j < nodeIDs.size(); j++) {
 				if (i == j) continue;
-				Node otherNode = graphManager.getNode(otherIDs[j]); 
-				double dx = node.x - otherNode.y;
-				double dy = node.y - otherNode.x;
+				Node otherNode = graphManager.getNode(ids[j]); 
+				double dx = node.x - otherNode.x;
+				double dy = node.y - otherNode.y;
 				
-				//fx += 0.1 / dx;
-				//fy += 0.1 / dy;
+				double distance = Math.sqrt(dx * dx + dy * dy);
+				int doubleRadius = 10;
+				if (distance < doubleRadius) {
+					double changeX = -dx + dx / distance * (doubleRadius);
+					double changeY = -dy + dy / distance * (doubleRadius);
+					node.x += Math.max(-MAX_CHANGE, Math.min(MAX_CHANGE, changeX * 1.1));
+					node.y += Math.max(-MAX_CHANGE, Math.min(MAX_CHANGE, changeY * 1.1));
+				}
 			}
-			
-			node.x += fx;
-			node.y += fy;
 		}
 		
 		this.radius = 20 * nodeIDs.size();
