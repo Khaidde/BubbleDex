@@ -1,12 +1,16 @@
 package main;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 
 import graphics.GraphManager;
 import graphics.ResizableCanvas;
+import input.FileReader;
 import input.Group;
 import input.Person;
 import input.Trait;
@@ -25,7 +29,9 @@ public class Window extends Application {
 	private static final String TITLE = "BubbleDex";
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
-	
+	public ArrayList<Person> allPeople;
+	public Set<Group> allGroups;
+
 	private GraphManager graphManager = new GraphManager();
 	
 	public void begin(String[] args) {
@@ -78,9 +84,13 @@ public class Window extends Application {
 			}
     	};
         timer.start();
-        
-        
-        //TODO read files and everything
+
+		try {
+			allGroups = new LinkedHashSet<>();
+			allPeople = FileReader.read("Test.xlsx", allGroups);
+		} catch (IOException e) {
+			System.out.println("File not found");
+		}
     }
     
     public static void main(String[] args) {
